@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kigani Systems — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* – reset & base – */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green-deep: #1B3A2D;
+      --green-mid: #2D5A44;
+      --green-light: #4A7A62;
+      --gold: #D4903D;
+      --gold-light: #E8C88A;
+      --cream: #F7F3ED;
+      --sand: #E8D5B7;
+      --charcoal: #1E1E1E;
+      --white: #FFFFFF;
+      --shadow-md: 0 12px 48px rgba(27, 58, 45, 0.15);
+      --radius: 16px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* – scrollbar – */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--cream);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--green-mid);
+      border-radius: 4px;
+    }
+
+    /* – typography – */
+    h1,
+    h2 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* – header – */
+    header {
+      padding: 1.5rem 0 0.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--green-deep);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--green-deep);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: 700;
+      transform: rotate(-4deg);
+      transition: var(--transition);
+      /* simple abstract mark – no emoji */
+      position: relative;
+    }
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--gold);
+      border-radius: 30% 70% 40% 60% / 50% 40% 60% 50%;
+      opacity: 0.6;
+    }
+    .logo:hover .logo-icon {
+      transform: rotate(4deg) scale(1.05);
+    }
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-ghost {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--green-mid);
+      opacity: 0.6;
+      letter-spacing: 0.04em;
+    }
+
+    /* – hero / coming soon – */
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(ellipse, rgba(212, 144, 61, 0.08), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba(27, 58, 45, 0.05), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--green-mid);
+      background: rgba(45, 90, 68, 0.08);
+      padding: 0.4rem 1.2rem 0.4rem 0.8rem;
+      border-radius: 100px;
+      border: 1px solid rgba(45, 90, 68, 0.08);
+      width: fit-content;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 7vw, 5rem);
+      font-weight: 700;
+      color: var(--green-deep);
+      line-height: 1.05;
+    }
+    .hero h1 .highlight {
+      color: var(--gold);
+      position: relative;
+    }
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: rgba(212, 144, 61, 0.15);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #4A4A4A;
+      max-width: 480px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.9rem 2.4rem;
+      border-radius: 60px;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--green-deep);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .btn:hover::after {
+      opacity: 1;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(27, 58, 45, 0.25);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+    .btn-gold:hover {
+      box-shadow: 0 12px 32px rgba(212, 144, 61, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green-deep);
+      border: 2px solid var(--green-deep);
+    }
+    .btn-outline:hover {
+      background: var(--green-deep);
+      color: var(--white);
+      box-shadow: 0 12px 32px rgba(27, 58, 45, 0.20);
+    }
+
+    /* – visual / abstract – */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-robot {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 1/1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .abstract-ring {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .abstract-ring .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(27, 58, 45, 0.05);
+      animation: spin-slow 20s linear infinite;
+    }
+    .abstract-ring .ring:nth-child(1) {
+      width: 100%;
+      height: 100%;
+      border-color: rgba(212, 144, 61, 0.10);
+      border-width: 1px;
+      animation-duration: 30s;
+    }
+    .abstract-ring .ring:nth-child(2) {
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
+      border-color: rgba(27, 58, 45, 0.04);
+      border-width: 1px;
+      animation-duration: 22s;
+      animation-direction: reverse;
+    }
+    .abstract-ring .ring:nth-child(3) {
+      width: 55%;
+      height: 55%;
+      top: 22.5%;
+      left: 22.5%;
+      border-color: rgba(212, 144, 61, 0.08);
+      border-width: 2px;
+      animation-duration: 18s;
+    }
+
+    @keyframes spin-slow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .abstract-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42%;
+      height: 42%;
+      background: linear-gradient(145deg, var(--green-deep), var(--green-mid));
+      border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+      box-shadow: 0 20px 60px rgba(27, 58, 45, 0.20), inset 0 -4px 20px rgba(0, 0, 0, 0.10);
+      animation: float-center 6s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .abstract-center .mark {
+      width: 32%;
+      height: 32%;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 30% 70% 50% 50% / 40% 40% 60% 60%;
+      opacity: 0.7;
+      animation: pulse-mark 4s ease-in-out infinite;
+    }
+
+    @keyframes float-center {
+      0%,
+      100% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      }
+      33% {
+        transform: translate(-50%, -55%) rotate(2deg) scale(1.03);
+      }
+      66% {
+        transform: translate(-50%, -45%) rotate(-2deg) scale(0.97);
+      }
+    }
+
+    @keyframes pulse-mark {
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+    }
+
+    /* floating particles – geometric */
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0.25;
+      animation: float-particle 8s ease-in-out infinite;
+    }
+    .particle:nth-child(1) {
+      top: 10%;
+      left: 12%;
+      animation-delay: 0s;
+      width: 8px;
+      height: 8px;
+    }
+    .particle:nth-child(2) {
+      top: 18%;
+      right: 8%;
+      animation-delay: 1.5s;
+      width: 4px;
+      height: 4px;
+    }
+    .particle:nth-child(3) {
+      bottom: 22%;
+      left: 6%;
+      animation-delay: 3s;
+      width: 10px;
+      height: 10px;
+      opacity: 0.15;
+    }
+    .particle:nth-child(4) {
+      bottom: 12%;
+      right: 16%;
+      animation-delay: 4.5s;
+      width: 5px;
+      height: 5px;
+    }
+    .particle:nth-child(5) {
+      top: 48%;
+      left: 4%;
+      animation-delay: 2s;
+      width: 7px;
+      height: 7px;
+    }
+
+    @keyframes float-particle {
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.2;
+      }
+      50% {
+        transform: translateY(-20px) scale(1.5);
+        opacity: 0.5;
+      }
+    }
+
+    /* – footer – */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255, 255, 255, 0.5);
+      padding: 1.8rem 0;
+      margin-top: auto;
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+    footer a {
+      color: rgba(255, 255, 255, 0.5);
+      transition: var(--transition);
+    }
+    footer a:hover {
+      color: var(--gold);
+    }
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    /* – fade-up – */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 {
+      transition-delay: 0.1s;
+    }
+    .fade-up.delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    /* – responsive – */
+    @media (max-width: 900px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      .hero-content {
+        align-items: center;
+      }
+      .hero p {
+        max-width: 100%;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-robot {
+        max-width: 300px;
+      }
+      .hero-badge {
+        align-self: center;
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 10vw, 3.8rem);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header .container {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+      .hero {
+        padding: 1rem 0 2rem;
+        min-height: 60vh;
+      }
+      .hero-robot {
+        max-width: 220px;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 0.7rem 1.6rem;
+        font-size: 0.85rem;
+      }
+      footer .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <a href="#" class="logo">
+        <span class="logo-icon"></span>
+        Kigani<span>Systems</span>
+      </a>
+      <span class="nav-ghost">— off‑grid robotics</span>
+    </div>
+  </header>
+
+  <!-- HERO / COMING SOON -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge fade-up">
+          <span class="dot"></span>
+          building for the fields
+        </div>
+        <h1 class="fade-up">
+          Coming <br /><span class="highlight">soon</span>
+        </h1>
+        <p class="fade-up delay-1">
+          Low‑cost, off‑grid field robotics for the farmers<br />
+          the industry ignores.
+        </p>
+        <div class="hero-actions fade-up delay-2">
+          <a href="#" class="btn btn-gold">Notify me</a>
+          <a href="#" class="btn btn-outline">Learn more</a>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up delay-1">
+        <div class="hero-robot">
+          <div class="abstract-ring">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="abstract-center">
+              <div class="mark"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span>© 2026 Kigani Systems</span>
+      <div class="footer-socials">
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">hello@kiganisystems.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    (function() {
+      'use strict';
+
+      // fade-up observer
+      const fadeEls = document.querySelectorAll('.fade-up');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+      fadeEls.forEach(el => observer.observe(el));
+
+      // trigger on load for elements already visible
+      window.addEventListener('load', () => {
+        document.querySelectorAll('.fade-up').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.85) {
+            el.classList.add('visible');
+          }
+        });
+      });
+
+      // smooth anchor (if any)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const offset = 80;
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+
+      console.log('%c⏚ Kigani Systems', 'font-size:22px; font-weight:700; color:#1B3A2D;');
+      console.log('%cComing soon — low‑cost, off‑grid field robotics.', 'font-size:13px; color:#4A4A4A;');
+
+    })();
+  </script>
+
+</body>
+</html>
